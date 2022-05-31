@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:tobibo/src/screens/welcome_screen.dart';
 import 'package:tobibo/theme/extention.dart';
 import 'package:tobibo/theme/light_color.dart';
 
@@ -15,6 +16,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 2)).then((_) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => const WelcomeScreen()));
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -22,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/doctor_face.jpg"),
+                image: AssetImage("assets/doctor.jpg"),
                 fit: BoxFit.fill,
               ),
             ),
