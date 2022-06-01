@@ -6,29 +6,35 @@ import 'dart:async';
 
 import 'dart:io';
 
+import 'package:tobibo/src/screens/login_screen.dart';
+
 final API = "https://e26b-129-45-34-220.ngrok.io";
 
-class LogPost {
-  LogPost();
+class SignupPost {
+  SignupPost();
 
-  factory LogPost.fromJson(Map<String, dynamic> json) {
-    return LogPost();
+  factory SignupPost.fromJson(Map<String, dynamic> json) {
+    return SignupPost();
   }
 }
 
-Future<int> Login(context, email, mdp) async {
+Future<int> Signup(context, nom, prenom, email, num_tel, mdp) async {
   final response = await http.post(
-    Uri.parse(API + '/auth/login'),
-    body: {"email": email, "mdp": mdp},
+    Uri.parse(API + '/auth/register'),
+    body: {
+      "nom": nom,
+      "prenom": prenom,
+      "email": email,
+      "num_tel": num_tel,
+      "mdp": num_tel
+    },
   );
   print(response.statusCode);
   print(response.body);
   if (response.statusCode == 201) {
     print('log in with success');
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+    Navigator.of(context).pushNamed('login');
   } else {
-    print(email);
     // If the server did not return a 200 CREATED response,
     // then throw an exception.
     print("une erreur s'est produite");

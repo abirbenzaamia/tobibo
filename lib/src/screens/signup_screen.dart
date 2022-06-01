@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tobibo/src/screens/login_screen.dart';
+import 'package:tobibo/src/services/signup.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _numTelController = TextEditingController();
   final TextEditingController _mdpController = TextEditingController();
   final TextEditingController _mdpConfirmController = TextEditingController();
+  Future<int>? _signup;
 
   FocusNode f1 = new FocusNode();
   FocusNode f2 = new FocusNode();
@@ -95,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               textInputAction: TextInputAction.next,
               validator: (value) {
-                if (value!.isEmpty) return 'Please enter the Name';
+                if (value!.isEmpty) return 'Veuillez saisir votre nom';
                 return null;
               },
             ),
@@ -130,7 +132,7 @@ class _SignupScreenState extends State<SignupScreen> {
               },
               textInputAction: TextInputAction.next,
               validator: (value) {
-                if (value!.isEmpty) return 'Please enter the Name';
+                if (value!.isEmpty) return 'Veuillez saisir votre prénom';
                 return null;
               },
             ),
@@ -163,9 +165,9 @@ class _SignupScreenState extends State<SignupScreen> {
               textInputAction: TextInputAction.next,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter the Email';
+                  return 'Veuillez saisir votre email';
                 } else if (!emailValidate(value)) {
-                  return 'Please enter correct Email';
+                  return 'Veuillez saisir un email correct';
                 }
                 return null;
               },
@@ -197,7 +199,8 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               textInputAction: TextInputAction.next,
               validator: (value) {
-                if (value!.isEmpty) return 'Please enter the Name';
+                if (value!.isEmpty)
+                  return 'Veuillez saisir votre n° de téléphone';
                 return null;
               },
             ),
@@ -237,9 +240,9 @@ class _SignupScreenState extends State<SignupScreen> {
               textInputAction: TextInputAction.next,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter the Password';
+                  return 'Veuillez saisir votre mot de passe';
                 } else if (value.length < 8) {
-                  return 'Password must be at least 8 characters long';
+                  return 'Le mot de passe doit contenir au minimum 8 caractères';
                 } else {
                   return null;
                 }
@@ -277,9 +280,9 @@ class _SignupScreenState extends State<SignupScreen> {
               textInputAction: TextInputAction.done,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter the Password';
+                  return 'Veuillez saisir votre mot de passe';
                 } else if (value.compareTo(_mdpController.text) != 0) {
-                  return 'Password not Matching';
+                  return 'Les deux mots de passe ne sont identiques';
                 } else {
                   return null;
                 }
@@ -303,6 +306,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       showLoaderDialog(context);
+                      _signup = Signup(
+                          context,
+                          _nomController.text,
+                          _prenomController.text,
+                          _emailController.text,
+                          _numTelController.text,
+                          _mdpController.text);
                       // _registerAccount();
                     }
                   },

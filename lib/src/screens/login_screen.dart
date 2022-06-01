@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tobibo/src/screens/signup_screen.dart';
+import 'package:tobibo/src/screens/spalsh_screen.dart';
 import 'package:tobibo/src/services/login.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -149,8 +150,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () {
-                    _login = Login(_emailController.text.toString(),
+                  onPressed: () async {
+                    _login = Login(context, _emailController.text.toString(),
                         _mdpController.text.toString());
                   },
                   style: ElevatedButton.styleFrom(
