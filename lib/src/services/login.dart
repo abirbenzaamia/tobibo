@@ -26,7 +26,7 @@ Future<int> Login(context, email, mdp) async {
   if (response.statusCode == 201) {
     print('log in with success');
     Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+        .pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
   } else {
     print(email);
     // If the server did not return a 200 CREATED response,

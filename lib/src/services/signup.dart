@@ -33,7 +33,7 @@ Future<int> Signup(context, nom, prenom, email, num_tel, mdp) async {
   print(response.body);
   if (response.statusCode == 201) {
     print('log in with success');
-    Navigator.of(context).pushNamed('login');
+    Navigator.of(context).pushNamed('/login');
   } else {
     // If the server did not return a 200 CREATED response,
     // then throw an exception.

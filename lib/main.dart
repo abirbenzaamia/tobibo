@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tobibo/src/screens/home_screen.dart';
+import 'package:tobibo/src/screens/login_screen.dart';
+import 'package:tobibo/src/screens/signup_screen.dart';
 import 'package:tobibo/src/screens/spalsh_screen.dart';
 
 void main() {
@@ -16,6 +19,9 @@ class MyApp extends StatelessWidget {
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const SplashScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const SignupScreen(),
+        '/home': (context) => const HomeScreen(),
       },
       theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
