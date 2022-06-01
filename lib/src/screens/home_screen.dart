@@ -5,8 +5,15 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:tobibo/src/services/medecin.dart';
+import 'package:tobibo/theme/extention.dart';
 
+import '../../theme/light_color.dart';
+import '../../theme/text_styles.dart';
+import '../models/DoctorModel.dart';
 import '../models/cardModel.dart';
+import '../models/data.dart';
+import '../widgets/topRatedList.dart';
 import 'notifications_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,6 +24,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<HomeScreen> {
+  late List<DoctorModel> doctorDataList;
+  @override
+  void initState() {
+    super.initState();
+    GetMedeins();
+  }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _doctorName = TextEditingController();
 
@@ -36,6 +50,7 @@ class _MyWidgetState extends State<HomeScreen> {
         }
       },
     );
+
     return Scaffold(
       backgroundColor: Colors.white,
       key: _scaffoldKey,
@@ -96,7 +111,7 @@ class _MyWidgetState extends State<HomeScreen> {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.only(left: 20, bottom: 10),
                     child: Text(
-                      "Hello " + 'abir',
+                      "Bonjour " + 'abir',
                       style: GoogleFonts.lato(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -107,7 +122,7 @@ class _MyWidgetState extends State<HomeScreen> {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.only(left: 20, bottom: 25),
                     child: Text(
-                      "Let's Find Your\nDoctor",
+                      "Trouvons votre Medecin",
                       style: GoogleFonts.lato(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
@@ -128,7 +143,7 @@ class _MyWidgetState extends State<HomeScreen> {
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
-                        hintText: 'Search doctor',
+                        hintText: 'Rechercher un medecin',
                         hintStyle: GoogleFonts.lato(
                           color: Colors.black26,
                           fontSize: 18,
@@ -156,18 +171,6 @@ class _MyWidgetState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 23, bottom: 10),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "We care for you",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.lato(
-                          color: Colors.blue[800],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ),
-                  Container(
                     width: MediaQuery.of(context).size.width,
                     child: Container(),
                     //carousel
@@ -176,7 +179,7 @@ class _MyWidgetState extends State<HomeScreen> {
                     padding: EdgeInsets.only(left: 20),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Specialists",
+                      "Specialistés",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
                           color: Colors.blue[800],
@@ -271,7 +274,7 @@ class _MyWidgetState extends State<HomeScreen> {
                     padding: EdgeInsets.only(left: 20),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Top Rated",
+                      "Medecins",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
                           color: Colors.blue[800],
@@ -284,7 +287,7 @@ class _MyWidgetState extends State<HomeScreen> {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 15, right: 15),
-                    //child: TopRatedList(),
+                    child: TopRatedList(),
                   ),
                   SizedBox(
                     height: 20,

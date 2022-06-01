@@ -11,9 +11,9 @@ class CardModel {
 }
 
 List<CardModel> cards = [
-  new CardModel("Cardiologist", 0xFFec407a, FlutterIcons.heart_ant),
-  new CardModel("Dentist", 0xFF5c6bc0, FlutterIcons.tooth_mco),
-  new CardModel("Eye Special", 0xFFfbc02d, TablerIcons.eye),
-  new CardModel("Orthopaedic", 0xFF1565C0, Icons.wheelchair_pickup_sharp),
-  new CardModel("Paediatrician", 0xFF2E7D32, FlutterIcons.baby_faw5s),
+  new CardModel("Cardiologie", 0xFFec407a, FlutterIcons.heart_ant),
+  new CardModel("Dentiste", 0xFF5c6bc0, FlutterIcons.tooth_mco),
+  new CardModel("Ophtalmologie", 0xFFfbc02d, TablerIcons.eye),
+  new CardModel("Medecine du sport", 0xFF1565C0, Icons.wheelchair_pickup_sharp),
+  new CardModel("Pédiatrie", 0xFF2E7D32, FlutterIcons.baby_faw5s),
 ];

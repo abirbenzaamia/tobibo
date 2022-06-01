@@ -8,7 +8,7 @@ import 'dart:io';
 
 import 'package:tobibo/src/screens/login_screen.dart';
 
-final API = "https://e26b-129-45-34-220.ngrok.io";
+final API = "https://5ff9-129-45-34-220.ngrok.io";
 
 class SignupPost {
   SignupPost();
